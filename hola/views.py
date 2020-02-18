@@ -31,12 +31,11 @@ def def_login(request):
 
 def def_articulo(request):
     if request.method == 'POST':
-        form = FormArticulo(request.POST)
+        form = FormArticulo(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-        
+            return redirect('articulos')
         return render(request, 'articulo.html', {'form':form})
-
     form = FormArticulo()
     return render(request, 'articulo.html', {'form':form})
 
@@ -53,11 +52,10 @@ def def_articulo_editar(request, id):
     articulo = Articulo.objects.get(pk=id)
 
     if request.method == 'POST':
-        form = FormArticulo(request.POST)
+        form = FormArticulo(request.POST, request.FILES, instance=articulo)
         if form.is_valid():
             form.save()
-        
-        return render(request, 'articulo.html', {'form':form})
-
+            return redirect('articulos')
+        return render(request, 'editar_articulo.html', {'form':form})
     form = FormArticulo(instance=articulo)
-    return render(request, 'articulo.html', {'form':form,'editar':True})
+    return render(request, 'editar_articulo.html', {'form':form,'editar':True})

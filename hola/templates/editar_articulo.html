@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Artículo nuevo</title>
+    <title>Actualizar artículo</title>
         
 </head>
 <body>
-    <h1>Crear artículo</h1>
-    <form method="post" enctype="multipart/form-data">
+    <h1>Actualizar artículo</h1>
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{form.as_p}}
-        <button type="submit">Agregar</button>
+        <button type="submit">Guardar</button>
         <a href="{% url 'articulos' %}">Cancelar</a>
     </form>
 </body>
